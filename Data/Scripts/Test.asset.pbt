@@ -1,11 +1,10 @@
 Assets {
-  Id: 2020806990263371807
-  Name: "UI_Tab"
+  Id: 10596310822987965010
+  Name: "Test"
   PlatformAssetType: 3
   TextAsset {
     CustomParameters {
     }
   }
   SerializationVersion: 118
-  VirtualFolderPath: "UI Tab"
 }

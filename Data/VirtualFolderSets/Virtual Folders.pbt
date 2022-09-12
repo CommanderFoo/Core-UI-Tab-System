@@ -16,5 +16,9 @@ Assets {
       VirtualFolderPath: "UI Button"
       PlatformAssetType: 5
     }
+    Folders {
+      VirtualFolderPath: "UI Button"
+      PlatformAssetType: 3
+    }
   }
 }
