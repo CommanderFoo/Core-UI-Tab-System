@@ -15,7 +15,7 @@ Objects {
     }
   }
   ChildIds: 14868153076157551174
-  ChildIds: 17954469735301316220
+  ChildIds: 5730488922675171119
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -35,13 +35,10 @@ Objects {
   IsReplicationEnabledByDefault: true
 }
 Objects {
-  Id: 17954469735301316220
-  Name: "Cube"
+  Id: 5730488922675171119
+  Name: "UI Tab System"
   Transform {
     Location {
-      X: -357.879059
-      Y: 100.419495
-      Z: -6.10351562e-05
     }
     Rotation {
     }
@@ -64,24 +61,9 @@ Objects {
   EditorIndicatorVisibility {
     Value: "mc:eindicatorvisibility:visiblewhenselected"
   }
-  CoreMesh {
-    MeshAsset {
-      Id: 12095835209017042614
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    StaticMesh {
-      Physics {
-        Mass: 100
-        LinearDamping: 0.01
-      }
-      BoundsScale: 1
-    }
-  }
-  Relevance {
-    Value: "mc:eproxyrelevance:critical"
+  Folder {
+    IsFilePartition: true
+    FilePartitionName: "UI Tab System"
   }
   NetworkRelevanceDistance {
     Value: "mc:eproxyrelevance:critical"
