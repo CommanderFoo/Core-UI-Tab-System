@@ -1,3 +1,6 @@
+---@type Folder
+local ROOT = script:GetCustomProperty("Root"):WaitForObject()
+
 ---@type UI_Tab
 local UI_Tab = require(script:GetCustomProperty("UI_Tab"))
 
@@ -10,6 +13,8 @@ local OVERLAY = script:GetCustomProperty("Overlay"):WaitForObject()
 ---@type UIPanel
 local HEADER_TABS = script:GetCustomProperty("HeaderTabs"):WaitForObject()
 
-UI_Tab.set(CONTAINER, OVERLAY, HEADER_TABS)
+local PADDING = ROOT:GetCustomProperty("Padding")
+
+UI_Tab.set(CONTAINER, OVERLAY, HEADER_TABS, PADDING)
 
 Input.actionPressedEvent:Connect(UI_Tab.on_action_pressed)

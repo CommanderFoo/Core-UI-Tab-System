@@ -59,6 +59,12 @@ Objects {
   ParentId: 2109899457227198305
   UnregisteredParameters {
     Overrides {
+      Name: "cs:Root"
+      ObjectReference {
+        SelfId: 5730488922675171119
+      }
+    }
+    Overrides {
       Name: "cs:Container"
       ObjectReference {
         SelfId: 10347724912254700388

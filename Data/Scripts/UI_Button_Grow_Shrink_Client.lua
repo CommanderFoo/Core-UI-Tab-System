@@ -18,7 +18,7 @@ local tween = nil
 local button_width = BUTTON.width
 local button_height = BUTTON.height
 
-UI_Button.setup(script, {
+local result = UI_Button.setup(script, {
 
 	hovered = function(obj)
 		tween = Tween:new(.8, { w = obj.button.width, h = obj.button.height }, { w = button_width + GROW_AMOUNT, h = button_height + GROW_AMOUNT })
@@ -53,3 +53,7 @@ function Tick(dt)
 		tween:tween(dt)
 	end
 end
+
+Events.Connect("UI.Button.Toggle." .. BUTTON.id, function()
+	result.toggle()
+end)

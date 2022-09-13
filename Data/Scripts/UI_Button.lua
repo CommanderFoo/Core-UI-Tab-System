@@ -41,6 +41,8 @@ function UI_Button.setup(s, opts)
 	local button_text = root:GetCustomProperty("ButtonText"):WaitForObject()
 	local obj = {
 
+		width = root.width,
+		height = root.height,
 		is_disabled = false,
 		is_hovered = false,
 		is_pressed = false,
@@ -61,7 +63,7 @@ function UI_Button.setup(s, opts)
 	}
 
 	evts["pressed"] = root.pressedEvent:Connect(function(button)
-		if(obj.is_disabled) then
+		if(obj.is_disabled or obj.toggled == 2) then
 			return
 		end
 
@@ -73,10 +75,12 @@ function UI_Button.setup(s, opts)
 		if(opts.pressed ~= nil) then
 			opts.pressed(obj)
 		end
+
+		Events.Broadcast("UI.Button.Pressed." .. button.id, obj)
 	end)
 
 	evts["released"] = root.releasedEvent:Connect(function(button)
-		if(obj.is_disabled) then
+		if(obj.is_disabled or obj.toggled == 2) then
 			return
 		end
 
@@ -93,10 +97,12 @@ function UI_Button.setup(s, opts)
 		if(opts.released ~= nil) then
 			opts.released(obj)
 		end
+
+		Events.Broadcast("UI.Button.Released." .. button.id, obj)
 	end)
 
 	evts["hovered"] = root.hoveredEvent:Connect(function(button)
-		if(obj.is_disabled) then
+		if(obj.is_disabled or obj.toggled == 2) then
 			return
 		end
 
@@ -112,10 +118,12 @@ function UI_Button.setup(s, opts)
 
 		UI_Button.flip_visbility(obj.hovered_image, obj.button_image, obj.pressed_image, obj.disabled_image)
 		UI_Button.set_color(button_text, obj.button_hovered_text_color)
+
+		Events.Broadcast("UI.Button.Hovered." .. button.id, obj)
 	end)
 
 	evts["unhovered"] = root.unhoveredEvent:Connect(function(button)
-		if(obj.is_disabled) then
+		if(obj.is_disabled or obj.toggled == 2) then
 			return
 		end
 
@@ -131,6 +139,8 @@ function UI_Button.setup(s, opts)
 
 		UI_Button.flip_visbility(obj.button_image, obj.hovered_image, obj.pressed_image, obj.disabled_image)
 		UI_Button.set_color(button_text, obj.button_text_color)
+
+		Events.Broadcast("UI.Button.Unhovered." .. button.id, obj)
 	end)
 
 	root.destroyEvent:Connect(function()
@@ -154,11 +164,26 @@ function UI_Button.setup(s, opts)
 
 	obj.disable = UI_Button.disable(obj)
 	obj.enable = UI_Button.enable(obj)
+	obj.toggle = UI_Button.toggle(obj)
 	obj.destroy = function()
 		root:Destroy()
 	end
 
 	return obj
+end
+
+function UI_Button.toggle(opts)
+	return function()
+		if(opts.toggled == 2) then
+			opts.toggled = 1
+			UI_Button.flip_visbility(opts.button_image, opts.pressed_image, opts.hovered_image, opts.disabled_image)
+			UI_Button.set_color(opts.button_text, opts.button_text_color)
+		else
+			opts.toggled = 2
+			UI_Button.flip_visbility(opts.pressed_image, opts.button_image, opts.hovered_image, opts.disabled_image)
+			UI_Button.set_color(opts.button_text, opts.button_pressed_text_color)
+		end
+	end
 end
 
 ---Disables the button.
@@ -177,6 +202,8 @@ function UI_Button.disable(opts)
 		if(opts.user_opts.disabled ~= nil) then
 			opts.user_opts.disabled(opts)
 		end
+
+		Events.Broadcast("UI.Button.Disabled." .. opts.button.id, opts)
 	end
 end
 
@@ -196,6 +223,8 @@ function UI_Button.enable(opts)
 		if(opts.user_opts.enabled ~= nil) then
 			opts.user_opts.enabled(opts)
 		end
+
+		Events.Broadcast("UI.Button.Enabled." .. opts.button.id, opts)
 	end
 end
 
