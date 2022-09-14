@@ -13,8 +13,10 @@ local OVERLAY = script:GetCustomProperty("Overlay"):WaitForObject()
 ---@type UIPanel
 local HEADER_TABS = script:GetCustomProperty("HeaderTabs"):WaitForObject()
 
+local BODY = script:GetCustomProperty("Body"):WaitForObject()
+
 local PADDING = ROOT:GetCustomProperty("Padding")
 
-UI_Tab.set(CONTAINER, OVERLAY, HEADER_TABS, PADDING)
+UI_Tab.set(CONTAINER, OVERLAY, HEADER_TABS, PADDING, BODY)
 
 Input.actionPressedEvent:Connect(UI_Tab.on_action_pressed)

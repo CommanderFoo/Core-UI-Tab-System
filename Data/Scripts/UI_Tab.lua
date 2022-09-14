@@ -16,11 +16,12 @@ local UI_Tab = {
 
 }
 
-function UI_Tab.set(container, overlay, header, padding)
+function UI_Tab.set(container, overlay, header, padding, body)
 	UI_Tab.container = container
 	UI_Tab.overlay = overlay
 	UI_Tab.header = header
 	UI_Tab.padding = padding or 0
+	UI_Tab.body = body
 end
 
 function UI_Tab.add(key, button, panel, position)
@@ -40,6 +41,7 @@ function UI_Tab.add(key, button, panel, position)
 	UI_Tab.buttons[key] = {
 		
 		button = button,
+		panel = panel,
 		width = button.width,
 		height = button.height
 
@@ -47,12 +49,13 @@ function UI_Tab.add(key, button, panel, position)
 
 	if(panel ~= nil) then
 		UI_Tab.panels[key] = panel
+		panel.parent = UI_Tab.body
 	end
 
 	UI_Tab.offset = UI_Tab.offset + button.width + UI_Tab.padding
 	
-	Events.Connect("UI.Button.Pressed." .. button.id, function(obj)
-		UI_Tab.toggle_active(obj)
+	Events.Connect("UI.Button.Pressed." .. button.id, function()
+		UI_Tab.toggle_active(UI_Tab.buttons[key])
 	end)
 end
 
@@ -67,10 +70,11 @@ function UI_Tab.toggle_active(obj)
 	pressed_image.visibility = Visibility.FORCE_OFF
 	button_image.visibility = Visibility.FORCE_ON
 
-	UI_Tab.last_active_button.button.width = UI_Tab.last_active_button.width
-	UI_Tab.last_active_button.button.height = UI_Tab.last_active_button.height
+	if(UI_Tab.last_active_panel ~= nil) then
+		UI_Tab.last_active_panel.visibility = Visibility.FORCE_OFF
+	end
 
-	Events.Broadcast("UI.Button.Toggle." .. UI_Tab.last_active_button.button.id)
+	Events.Broadcast("UI.Button.Active." .. obj.button.id, obj.button)
 
 	local pressed_image = obj.button:GetCustomProperty("PressedImage"):WaitForObject()
 	local button_image = obj.button:GetCustomProperty("ButtonImage"):WaitForObject()
@@ -78,9 +82,15 @@ function UI_Tab.toggle_active(obj)
 	pressed_image.visibility = Visibility.FORCE_ON
 	button_image.visibility = Visibility.FORCE_OFF
 
-	Events.Broadcast("UI.Button.Toggle." .. obj.button.id)
+	if(obj.panel ~= nil) then
+		obj.panel.visibility = Visibility.INHERIT
+	end
 
 	UI_Tab.last_active_button = obj
+
+	if(obj.panel ~= nil) then
+		UI_Tab.last_active_panel = obj.panel
+	end
 end
 
 function UI_Tab.get(key)
@@ -128,27 +138,25 @@ function UI_Tab.show()
 	UI_Tab.visible = true
 
 	if(UI_Tab.last_active_button == nil) then
-		local first_button = UI_Tab.header:GetChildren()[2]
-		local grow_amount = first_button:GetCustomProperty("GrowAmount")
+		local first_button = UI_Tab.header:GetChildren()[1]
+		local first_panel = UI_Tab.body:GetChildren()[1]
 
 		UI_Tab.last_active_button = {
 		
 			button = first_button,
-			width = first_button.width,
-			height = first_button.height
+			panel = first_panel
 	
 		}
 
-		local pressed_image = first_button:GetCustomProperty("PressedImage"):WaitForObject()
-		local button_image = first_button:GetCustomProperty("ButtonImage"):WaitForObject()
+		UI_Tab.last_active_panel = first_panel
 
-		pressed_image.visibility = Visibility.FORCE_ON
-		button_image.visibility = Visibility.FORCE_OFF
+		if(first_panel ~= nil) then
+			first_panel.visibility = Visibility.INHERIT
+		end
 
-		first_button.width = first_button.width + grow_amount
-		first_button.height = first_button.height + grow_amount
-
-		Events.Broadcast("UI.Button.Toggle." .. first_button.id)
+		if(first_button ~= nil) then
+			Events.Broadcast("UI.Button.Active." .. first_button.id, first_button)
+		end
 	end
 end
 

@@ -1,5 +1,9 @@
 ---@class UI_Button
-local UI_Button = {}
+local UI_Button = {
+
+	active = nil
+
+}
 
 ---Turns on visibility for A and off for b and c.
 ---@param a CoreObject
@@ -41,6 +45,7 @@ function UI_Button.setup(s, opts)
 	local button_text = root:GetCustomProperty("ButtonText"):WaitForObject()
 	local obj = {
 
+		opts = opts,
 		width = root.width,
 		height = root.height,
 		is_disabled = false,
@@ -63,7 +68,7 @@ function UI_Button.setup(s, opts)
 	}
 
 	evts["pressed"] = root.pressedEvent:Connect(function(button)
-		if(obj.is_disabled or obj.toggled == 2) then
+		if(obj.is_disabled or obj.opts.active) then
 			return
 		end
 
@@ -72,15 +77,15 @@ function UI_Button.setup(s, opts)
 		UI_Button.flip_visbility(obj.pressed_image, obj.button_image, obj.hovered_image, obj.disabled_image)
 		UI_Button.set_color(button_text, obj.button_pressed_text_color)
 
+		Events.Broadcast("UI.Button.Pressed." .. button.id, obj)
+
 		if(opts.pressed ~= nil) then
 			opts.pressed(obj)
 		end
-
-		Events.Broadcast("UI.Button.Pressed." .. button.id, obj)
 	end)
 
 	evts["released"] = root.releasedEvent:Connect(function(button)
-		if(obj.is_disabled or obj.toggled == 2) then
+		if(obj.is_disabled or obj.opts.active) then
 			return
 		end
 
@@ -94,19 +99,21 @@ function UI_Button.setup(s, opts)
 			UI_Button.set_color(button_text, obj.button_text_color)
 		end
 
+		Events.Broadcast("UI.Button.Released." .. button.id, obj)
+		
 		if(opts.released ~= nil) then
 			opts.released(obj)
 		end
-
-		Events.Broadcast("UI.Button.Released." .. button.id, obj)
 	end)
 
 	evts["hovered"] = root.hoveredEvent:Connect(function(button)
-		if(obj.is_disabled or obj.toggled == 2) then
+		if(obj.is_disabled or obj.opts.active) then
 			return
 		end
 
 		obj.is_hovered = true
+
+		Events.Broadcast("UI.Button.Hovered." .. button.id, obj)
 
 		if(opts.hovered ~= nil) then
 			opts.hovered(obj)
@@ -118,12 +125,10 @@ function UI_Button.setup(s, opts)
 
 		UI_Button.flip_visbility(obj.hovered_image, obj.button_image, obj.pressed_image, obj.disabled_image)
 		UI_Button.set_color(button_text, obj.button_hovered_text_color)
-
-		Events.Broadcast("UI.Button.Hovered." .. button.id, obj)
 	end)
 
 	evts["unhovered"] = root.unhoveredEvent:Connect(function(button)
-		if(obj.is_disabled or obj.toggled == 2) then
+		if(obj.is_disabled or obj.opts.active) then
 			return
 		end
 
@@ -133,14 +138,14 @@ function UI_Button.setup(s, opts)
 			opts.unhovered(obj)
 		end
 		
+		Events.Broadcast("UI.Button.Unhovered." .. button.id, obj)
+
 		if(obj.is_pressed) then
 			return
 		end
 
 		UI_Button.flip_visbility(obj.button_image, obj.hovered_image, obj.pressed_image, obj.disabled_image)
 		UI_Button.set_color(button_text, obj.button_text_color)
-
-		Events.Broadcast("UI.Button.Unhovered." .. button.id, obj)
 	end)
 
 	root.destroyEvent:Connect(function()
@@ -164,26 +169,11 @@ function UI_Button.setup(s, opts)
 
 	obj.disable = UI_Button.disable(obj)
 	obj.enable = UI_Button.enable(obj)
-	obj.toggle = UI_Button.toggle(obj)
 	obj.destroy = function()
 		root:Destroy()
 	end
 
 	return obj
-end
-
-function UI_Button.toggle(opts)
-	return function()
-		if(opts.toggled == 2) then
-			opts.toggled = 1
-			UI_Button.flip_visbility(opts.button_image, opts.pressed_image, opts.hovered_image, opts.disabled_image)
-			UI_Button.set_color(opts.button_text, opts.button_text_color)
-		else
-			opts.toggled = 2
-			UI_Button.flip_visbility(opts.pressed_image, opts.button_image, opts.hovered_image, opts.disabled_image)
-			UI_Button.set_color(opts.button_text, opts.button_pressed_text_color)
-		end
-	end
 end
 
 ---Disables the button.
@@ -226,6 +216,26 @@ function UI_Button.enable(opts)
 
 		Events.Broadcast("UI.Button.Enabled." .. opts.button.id, opts)
 	end
+end
+
+function UI_Button.is_active(button)
+	if(button == UI_Button.active) then
+		return true
+	end
+
+	return false
+end
+
+function UI_Button.toggle_active(button)
+	if(UI_Button.active == button) then
+		return
+	end
+
+	if(UI_Button.active ~= nil) then
+		Events.Broadcast("UI.Button.Reset." .. UI_Button.active.id)
+	end
+
+	UI_Button.active = button
 end
 
 return UI_Button

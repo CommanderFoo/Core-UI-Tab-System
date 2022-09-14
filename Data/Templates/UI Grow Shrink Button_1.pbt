@@ -1,6 +1,6 @@
 Assets {
-  Id: 491768282389810091
-  Name: "UI Grow Shrink Button"
+  Id: 13665727436481978405
+  Name: "UI Grow Shrink Button_1"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
@@ -81,7 +81,7 @@ Assets {
           }
           Overrides {
             Name: "cs:GrowAmount"
-            Int: 30
+            Int: 150
           }
           Overrides {
             Name: "cs:ButtonImage:category"
@@ -156,7 +156,7 @@ Assets {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:forceoff"
+          Value: "mc:evisibilitysetting:inheritfromparent"
         }
         CameraCollidable {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -165,8 +165,8 @@ Assets {
           Value: "mc:eindicatorvisibility:visiblewhenselected"
         }
         Control {
-          Width: 75
-          Height: 75
+          Width: 800
+          Height: 800
           RenderTransformPivot {
             Anchor {
               Value: "mc:euianchor:middlecenter"
@@ -347,8 +347,9 @@ Assets {
               Id: 12530442819506261373
             }
             Color {
-              R: 0.923714519
-              G: 0.954000115
+              R: 1
+              G: 1
+              B: 1
               A: 1
             }
             TeamSettings {
@@ -610,7 +611,7 @@ Assets {
           Overrides {
             Name: "cs:Tween"
             AssetReference {
-              Id: 5010859578220487614
+              Id: 841534158063459245
             }
           }
         }
@@ -628,7 +629,7 @@ Assets {
         }
         Script {
           ScriptAsset {
-            Id: 3434899174104576620
+            Id: 11101994087091682858
           }
         }
         NetworkRelevanceDistance {
@@ -660,10 +661,6 @@ Assets {
       AssetId: "None"
     }
   }
-  Marketplace {
-    Description: "blah"
-  }
   SerializationVersion: 118
-  DirectlyPublished: true
   VirtualFolderPath: "UI Button"
 }

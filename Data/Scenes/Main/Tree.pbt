@@ -15,8 +15,8 @@ Objects {
     }
   }
   ChildIds: 14868153076157551174
-  ChildIds: 5730488922675171119
-  ChildIds: 9985931867485611039
+  ChildIds: 180490833809294268
+  ChildIds: 13036350745217510563
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -36,7 +36,7 @@ Objects {
   IsReplicationEnabledByDefault: true
 }
 Objects {
-  Id: 9985931867485611039
+  Id: 13036350745217510563
   Name: "Client"
   Transform {
     Location {
@@ -50,8 +50,8 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
-  ChildIds: 5291408254453448671
-  ChildIds: 1767680574108293362
+  ChildIds: 1064069068648775175
+  ChildIds: 3600934789790384400
   Collidable_v2 {
     Value: "mc:ecollisionsetting:forceoff"
   }
@@ -78,7 +78,7 @@ Objects {
   IsReplicationEnabledByDefault: true
 }
 Objects {
-  Id: 1767680574108293362
+  Id: 3600934789790384400
   Name: "UI Container"
   Transform {
     Location {
@@ -91,12 +91,12 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 9985931867485611039
-  ChildIds: 12637542280962272700
-  ChildIds: 5816616373142007041
-  ChildIds: 9806728790314487009
-  ChildIds: 13835505148805270879
-  ChildIds: 2281655950491281786
+  ParentId: 13036350745217510563
+  ChildIds: 11175457231462192052
+  ChildIds: 14433704759535646770
+  ChildIds: 16544663440047236831
+  ChildIds: 15644243514036152638
+  ChildIds: 7473403881761782771
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -144,7 +144,7 @@ Objects {
   IsReplicationEnabledByDefault: true
 }
 Objects {
-  Id: 2281655950491281786
+  Id: 7473403881761782771
   Name: "UI Grow Shrink Button"
   Transform {
     Location {
@@ -157,7 +157,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1767680574108293362
+  ParentId: 3600934789790384400
   TemplateInstance {
     ParameterOverrideMap {
       key: 4954124357189605708
@@ -269,15 +269,27 @@ Objects {
             Id: 5010859578220487614
           }
         }
+        Overrides {
+          Name: "cs:UI_Button"
+          AssetReference {
+            Id: 15694837509293367045
+          }
+        }
+        Overrides {
+          Name: "Script"
+          AssetReference {
+            Id: 3434899174104576620
+          }
+        }
       }
     }
     TemplateAsset {
-      Id: 491768282389810091
+      Id: 13665727436481978405
     }
   }
 }
 Objects {
-  Id: 13835505148805270879
+  Id: 15644243514036152638
   Name: "UI Grow Shrink Button"
   Transform {
     Location {
@@ -290,7 +302,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1767680574108293362
+  ParentId: 3600934789790384400
   TemplateInstance {
     ParameterOverrideMap {
       key: 4954124357189605708
@@ -402,15 +414,27 @@ Objects {
             Id: 5010859578220487614
           }
         }
+        Overrides {
+          Name: "cs:UI_Button"
+          AssetReference {
+            Id: 15694837509293367045
+          }
+        }
+        Overrides {
+          Name: "Script"
+          AssetReference {
+            Id: 3434899174104576620
+          }
+        }
       }
     }
     TemplateAsset {
-      Id: 491768282389810091
+      Id: 13665727436481978405
     }
   }
 }
 Objects {
-  Id: 9806728790314487009
+  Id: 16544663440047236831
   Name: "UI Grow Shrink Button"
   Transform {
     Location {
@@ -423,7 +447,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1767680574108293362
+  ParentId: 3600934789790384400
   TemplateInstance {
     ParameterOverrideMap {
       key: 4954124357189605708
@@ -544,15 +568,27 @@ Objects {
             Id: 5010859578220487614
           }
         }
+        Overrides {
+          Name: "cs:UI_Button"
+          AssetReference {
+            Id: 15694837509293367045
+          }
+        }
+        Overrides {
+          Name: "Script"
+          AssetReference {
+            Id: 3434899174104576620
+          }
+        }
       }
     }
     TemplateAsset {
-      Id: 491768282389810091
+      Id: 13665727436481978405
     }
   }
 }
 Objects {
-  Id: 5816616373142007041
+  Id: 14433704759535646770
   Name: "UI Grow Shrink Button"
   Transform {
     Location {
@@ -565,7 +601,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1767680574108293362
+  ParentId: 3600934789790384400
   TemplateInstance {
     ParameterOverrideMap {
       key: 4954124357189605708
@@ -685,15 +721,27 @@ Objects {
             Id: 5010859578220487614
           }
         }
+        Overrides {
+          Name: "cs:UI_Button"
+          AssetReference {
+            Id: 15694837509293367045
+          }
+        }
+        Overrides {
+          Name: "Script"
+          AssetReference {
+            Id: 3434899174104576620
+          }
+        }
       }
     }
     TemplateAsset {
-      Id: 491768282389810091
+      Id: 13665727436481978405
     }
   }
 }
 Objects {
-  Id: 12637542280962272700
+  Id: 11175457231462192052
   Name: "UI Grow Shrink Button"
   Transform {
     Scale {
@@ -702,7 +750,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1767680574108293362
+  ParentId: 3600934789790384400
   TemplateInstance {
     ParameterOverrideMap {
       key: 5166945521430075954
@@ -783,15 +831,27 @@ Objects {
             Id: 5010859578220487614
           }
         }
+        Overrides {
+          Name: "cs:UI_Button"
+          AssetReference {
+            Id: 15694837509293367045
+          }
+        }
+        Overrides {
+          Name: "Script"
+          AssetReference {
+            Id: 3434899174104576620
+          }
+        }
       }
     }
     TemplateAsset {
-      Id: 491768282389810091
+      Id: 13665727436481978405
     }
   }
 }
 Objects {
-  Id: 5291408254453448671
+  Id: 1064069068648775175
   Name: "Test"
   Transform {
     Location {
@@ -804,7 +864,7 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 9985931867485611039
+  ParentId: 13036350745217510563
   UnregisteredParameters {
     Overrides {
       Name: "cs:UI_Tab"
@@ -815,45 +875,45 @@ Objects {
     Overrides {
       Name: "cs:Button"
       ObjectReference {
-        SelfId: 4397976347809614733
+        SelfId: 1471408413022202134
         SubObjectId: 5166945521430075954
-        InstanceId: 12637542280962272700
+        InstanceId: 11175457231462192052
         TemplateId: 491768282389810091
       }
     }
     Overrides {
       Name: "cs:Button2"
       ObjectReference {
-        SelfId: 5507058547115581428
+        SelfId: 4559918406948374579
         SubObjectId: 5166945521430075954
-        InstanceId: 5816616373142007041
+        InstanceId: 14433704759535646770
         TemplateId: 491768282389810091
       }
     }
     Overrides {
       Name: "cs:Button3"
       ObjectReference {
-        SelfId: 2665604807032235474
+        SelfId: 10366383972249299343
         SubObjectId: 5166945521430075954
-        InstanceId: 9806728790314487009
+        InstanceId: 16544663440047236831
         TemplateId: 491768282389810091
       }
     }
     Overrides {
       Name: "cs:Button4"
       ObjectReference {
-        SelfId: 6130772162667285651
+        SelfId: 11412619180788752036
         SubObjectId: 5166945521430075954
-        InstanceId: 13835505148805270879
+        InstanceId: 15644243514036152638
         TemplateId: 491768282389810091
       }
     }
     Overrides {
       Name: "cs:Button5"
       ObjectReference {
-        SelfId: 14629033996307696589
+        SelfId: 6114505521146119950
         SubObjectId: 5166945521430075954
-        InstanceId: 2281655950491281786
+        InstanceId: 7473403881761782771
         TemplateId: 491768282389810091
       }
     }
@@ -881,13 +941,9 @@ Objects {
   IsReplicationEnabledByDefault: true
 }
 Objects {
-  Id: 5730488922675171119
+  Id: 180490833809294268
   Name: "UI Tab System"
   Transform {
-    Location {
-    }
-    Rotation {
-    }
     Scale {
       X: 1
       Y: 1
@@ -895,32 +951,36 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
-  UnregisteredParameters {
-    Overrides {
-      Name: "cs:Padding"
-      Float: 30
-    }
-  }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
-  CameraCollidable {
-    Value: "mc:ecollisionsetting:inheritfromparent"
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 5614874845559682138
+      value {
+        Overrides {
+          Name: "Name"
+          String: "UI Tab System"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 14117218562207568606
+    }
   }
-  EditorIndicatorVisibility {
-    Value: "mc:eindicatorvisibility:visiblewhenselected"
-  }
-  Folder {
-    IsFilePartition: true
-    FilePartitionName: "UI Tab System"
-  }
-  NetworkRelevanceDistance {
-    Value: "mc:eproxyrelevance:critical"
-  }
-  IsReplicationEnabledByDefault: true
 }
 Objects {
   Id: 14868153076157551174

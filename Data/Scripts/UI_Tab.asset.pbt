@@ -7,5 +7,6 @@ Assets {
     }
   }
   SerializationVersion: 118
+  DirectlyPublished: true
   VirtualFolderPath: "UI Tab"
 }
