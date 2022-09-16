@@ -79,6 +79,8 @@ Events.Connect("UI.Button.Active." .. BUTTON.id, function(button)
 	BUTTON_IMAGE.visibility = Visibility.FORCE_OFF
 	PRESSED_IMAGE.visibility = Visibility.FORCE_ON
 	BUTTON_TEXT:SetColor(PRESSED_TEXT_COLOR)
+	BUTTON.width = button_width + GROW_AMOUNT
+	BUTTON.height = button_height + GROW_AMOUNT
 	opts.active = true
 end)
 

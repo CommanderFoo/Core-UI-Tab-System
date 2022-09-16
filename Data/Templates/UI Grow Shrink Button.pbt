@@ -156,7 +156,7 @@ Assets {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:forceoff"
+          Value: "mc:evisibilitysetting:inheritfromparent"
         }
         CameraCollidable {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -347,8 +347,9 @@ Assets {
               Id: 12530442819506261373
             }
             Color {
-              R: 0.923714519
-              G: 0.954000115
+              R: 1
+              G: 1
+              B: 1
               A: 1
             }
             TeamSettings {
@@ -610,7 +611,7 @@ Assets {
           Overrides {
             Name: "cs:Tween"
             AssetReference {
-              Id: 5010859578220487614
+              Id: 841534158063459245
             }
           }
         }

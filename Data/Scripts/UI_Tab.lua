@@ -11,7 +11,7 @@ local UI_Tab = {
 
 	offset = 0,
 
-	last_active_button = nil,
+	last_active = nil,
 	last_active_panel = nil
 
 }
@@ -24,48 +24,66 @@ function UI_Tab.set(container, overlay, header, padding, body)
 	UI_Tab.body = body
 end
 
-function UI_Tab.add(key, button, panel, position)
-	position = position or UI_Tab.LEFT
-	button.anchor = UIPivot.MIDDLE_CENTER
+function UI_Tab.add(options)
+	options.position = options.position or UI_Tab.LEFT
+	options.button.anchor = UIPivot.MIDDLE_CENTER
 
-	if(position == UI_Tab.LEFT) then
-		button.dock = UIPivot.MIDDLE_LEFT
+	if(options.position == UI_Tab.LEFT) then
+		options.button.dock = UIPivot.MIDDLE_LEFT
 	else
-		button.dock = UIPivot.MIDDLE_RIGHT
+		options.button.dock = UIPivot.MIDDLE_RIGHT
 	end
 
-	button.parent = UI_Tab.header
-	button.visibility = Visibility.INHERIT
-	button.x = UI_Tab.offset
+	options.button.parent = UI_Tab.header
+	options.button.visibility = Visibility.INHERIT
+	options.button.x = UI_Tab.offset
 
-	UI_Tab.buttons[key] = {
+	local tbl = {
 		
-		button = button,
-		panel = panel,
-		width = button.width,
-		height = button.height
+		button = options.button,
+		panel = options.panel,
+		width = options.button.width,
+		height = options.button.height,
+		active = options.active,
+		inactive = options.inactive,
+		default = options.default
 
 	}
 
-	if(panel ~= nil) then
-		UI_Tab.panels[key] = panel
-		panel.parent = UI_Tab.body
+	UI_Tab.buttons[options.key] = tbl
+
+	if(options.panel ~= nil) then
+		UI_Tab.panels[options.key] = options.panel
+		options.panel.parent = UI_Tab.body
 	end
 
-	UI_Tab.offset = UI_Tab.offset + button.width + UI_Tab.padding
+	UI_Tab.offset = UI_Tab.offset + options.button.width + UI_Tab.padding
 	
-	Events.Connect("UI.Button.Pressed." .. button.id, function()
-		UI_Tab.toggle_active(UI_Tab.buttons[key])
+	Events.Connect("UI.Button.Pressed." .. options.button.id, function()
+		UI_Tab.toggle_active(UI_Tab.buttons[options.key])
 	end)
+
+	if(UI_Tab.last_active == nil and options.default) then
+		UI_Tab.last_active = tbl
+		UI_Tab.last_active_panel = tbl.panel
+	end
 end
 
 function UI_Tab.toggle_active(obj)
-	if(obj.button == UI_Tab.last_active_button.button) then
+	if(obj.button == UI_Tab.last_active.button) then
 		return
 	end
 
-	local pressed_image = UI_Tab.last_active_button.button:GetCustomProperty("PressedImage"):WaitForObject()
-	local button_image = UI_Tab.last_active_button.button:GetCustomProperty("ButtonImage"):WaitForObject()
+	if(UI_Tab.last_active.active ~= nil) then
+		UI_Tab.last_active.inactive(obj)
+	end
+
+	if(obj.active ~= nil) then
+		obj.active(obj)
+	end
+
+	local pressed_image = UI_Tab.last_active.button:GetCustomProperty("PressedImage"):WaitForObject()
+	local button_image = UI_Tab.last_active.button:GetCustomProperty("ButtonImage"):WaitForObject()
 
 	pressed_image.visibility = Visibility.FORCE_OFF
 	button_image.visibility = Visibility.FORCE_ON
@@ -86,7 +104,7 @@ function UI_Tab.toggle_active(obj)
 		obj.panel.visibility = Visibility.INHERIT
 	end
 
-	UI_Tab.last_active_button = obj
+	UI_Tab.last_active = obj
 
 	if(obj.panel ~= nil) then
 		UI_Tab.last_active_panel = obj.panel
@@ -134,30 +152,20 @@ function UI_Tab.has_panel(key)
 end
 
 function UI_Tab.show()
-	UI_Tab.container.visibility = Visibility.INHERIT
-	UI_Tab.visible = true
+	if(UI_Tab.last_active.default) then
+		UI_Tab.last_active.default = false
 
-	if(UI_Tab.last_active_button == nil) then
-		local first_button = UI_Tab.header:GetChildren()[1]
-		local first_panel = UI_Tab.body:GetChildren()[1]
-
-		UI_Tab.last_active_button = {
-		
-			button = first_button,
-			panel = first_panel
-	
-		}
-
-		UI_Tab.last_active_panel = first_panel
-
-		if(first_panel ~= nil) then
-			first_panel.visibility = Visibility.INHERIT
+		if(UI_Tab.last_active.panel ~= nil) then
+			UI_Tab.last_active.panel.visibility = Visibility.INHERIT
 		end
 
-		if(first_button ~= nil) then
-			Events.Broadcast("UI.Button.Active." .. first_button.id, first_button)
+		if(UI_Tab.last_active.button ~= nil) then
+			Events.Broadcast("UI.Button.Active." .. UI_Tab.last_active.button.id, UI_Tab.last_active.button)
 		end
 	end
+
+	UI_Tab.container.visibility = Visibility.INHERIT
+	UI_Tab.visible = true
 end
 
 function UI_Tab.hide()
@@ -172,11 +180,16 @@ function UI_Tab.on_action_pressed(player, action, value)
 
 			UI.SetCanCursorInteractWithUI(false)
 			UI.SetCursorVisible(false)
+
+
+			Events.Broadcast("UI.Tab.Hidden")
 		else
 			UI_Tab.show()
 
 			UI.SetCanCursorInteractWithUI(true)
 			UI.SetCursorVisible(true)
+
+			Events.Broadcast("UI.Tab.Visible")
 		end
 	end
 end

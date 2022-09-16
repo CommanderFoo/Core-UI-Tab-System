@@ -165,7 +165,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 17520074508432646658
+            Id: 4533482153162357568
           }
         }
       }
@@ -233,7 +233,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 17520074508432646658
+            Id: 4533482153162357568
           }
         }
       }
@@ -244,7 +244,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 17520074508432646658
+            Id: 4533482153162357568
           }
         }
       }
@@ -255,7 +255,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 17520074508432646658
+            Id: 4533482153162357568
           }
         }
       }
@@ -455,7 +455,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 9367278607867877595
+            Id: 728826923353604098
           }
         }
       }
@@ -523,7 +523,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 9367278607867877595
+            Id: 728826923353604098
           }
         }
       }
@@ -534,7 +534,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 9367278607867877595
+            Id: 728826923353604098
           }
         }
         Overrides {
@@ -554,7 +554,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 9367278607867877595
+            Id: 728826923353604098
           }
         }
       }
@@ -609,7 +609,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 7805284193536131044
+            Id: 13001338653634992638
           }
         }
       }
@@ -677,7 +677,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 7805284193536131044
+            Id: 13001338653634992638
           }
         }
       }
@@ -688,7 +688,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 7805284193536131044
+            Id: 13001338653634992638
           }
         }
         Overrides {
@@ -707,7 +707,7 @@ Objects {
         Overrides {
           Name: "Image"
           AssetReference {
-            Id: 7805284193536131044
+            Id: 13001338653634992638
           }
         }
       }
@@ -752,6 +752,17 @@ Objects {
   }
   ParentId: 3600934789790384400
   TemplateInstance {
+    ParameterOverrideMap {
+      key: 4954124357189605708
+      value {
+        Overrides {
+          Name: "Image"
+          AssetReference {
+            Id: 12866021531874365944
+          }
+        }
+      }
+    }
     ParameterOverrideMap {
       key: 5166945521430075954
       value {
@@ -810,6 +821,17 @@ Objects {
       }
     }
     ParameterOverrideMap {
+      key: 11026056780448712365
+      value {
+        Overrides {
+          Name: "Image"
+          AssetReference {
+            Id: 12866021531874365944
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
       key: 12694488258904602806
       value {
         Overrides {
@@ -818,6 +840,23 @@ Objects {
             R: 0.923714519
             G: 0.954000115
             A: 1
+          }
+        }
+        Overrides {
+          Name: "Image"
+          AssetReference {
+            Id: 12866021531874365944
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13605223797867136028
+      value {
+        Overrides {
+          Name: "Image"
+          AssetReference {
+            Id: 12866021531874365944
           }
         }
       }
