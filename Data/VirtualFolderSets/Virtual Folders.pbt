@@ -2,7 +2,7 @@ Assets {
   Id: 11237267171393895703
   Name: "Virtual Folders"
   PlatformAssetType: 30
-  SerializationVersion: 118
+  SerializationVersion: 121
   VirtualFolderSetAsset {
     Folders {
       VirtualFolderPath: "UI Tab"
@@ -18,6 +18,10 @@ Assets {
     }
     Folders {
       VirtualFolderPath: "UI Button"
+      PlatformAssetType: 3
+    }
+    Folders {
+      VirtualFolderPath: "Tween"
       PlatformAssetType: 3
     }
   }

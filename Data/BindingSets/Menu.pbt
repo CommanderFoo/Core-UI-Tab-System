@@ -2,7 +2,7 @@ Assets {
   Id: 7739327622034344970
   Name: "Menu"
   PlatformAssetType: 29
-  SerializationVersion: 118
+  SerializationVersion: 121
   DirectlyPublished: true
   BindingSetAsset {
     Bindings {

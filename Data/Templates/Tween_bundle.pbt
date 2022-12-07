@@ -27,6 +27,9 @@ Assets {
             ReferencedAssets {
               Id: 4450535636412507475
             }
+            ReferencedAssets {
+              Id: 5576294122610321325
+            }
           }
         }
         IsReplicationEnabledByDefault: true
@@ -41,8 +44,8 @@ Assets {
     Id: "bd2dd6ad784d458abb2af834bf4b97ff"
     OwnerAccountId: "93d6eaf2514940a08c5481a4c03c1ee3"
     OwnerName: "CommanderFoo"
-    Version: "1.4.0"
+    Version: "1.11.0"
     Description: "My custom tween library."
   }
-  SerializationVersion: 118
+  SerializationVersion: 121
 }
